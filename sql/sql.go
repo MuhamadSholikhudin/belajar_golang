@@ -62,10 +62,10 @@ func sqlQuery() {
     }
 
     for _, each := range result {
-        fmt.Println(each.name)
+        fmt.Println(each.number_of_employees, each.name)
     }
 }
-
+/*
 
 func sqlQueryRow() {
     var db, err = connect()
@@ -87,4 +87,4 @@ func sqlQueryRow() {
 
     fmt.Printf("name: %s\ngrade: %d\n", result.name, result.grade)
 }
-
+*/
