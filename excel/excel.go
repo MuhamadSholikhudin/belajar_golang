@@ -29,6 +29,8 @@ func main() {
     res = sqlQuery()
     exportExcel(res)
 
+    // excelWrite()
+
 }
 
 
@@ -55,7 +57,7 @@ func sqlQuery() []dept {
 	// simpan di awal ok, mau didefer di akhir juga bagus
     defer db.Close()
 
-    rows, err := db.Query("selectom employees")
+    rows, err := db.Query("select * from employees")
     if err != nil {
         log.Fatal(err)
     }
@@ -110,32 +112,32 @@ func exportExcel(result []dept) {
 }
 
 
-func exportExcel(result []dept) {
+// func exportExcel(result []dept) {
 
-    xlsx := excelize.NewFile()
-    sheet1Name := "holy sheet"
+//     xlsx := excelize.NewFile()
+//     sheet1Name := "holy sheet"
 
-    xlsx.SetSheetName(xlsx.GetSheetName(1), sheet1Name)
+//     xlsx.SetSheetName(xlsx.GetSheetName(1), sheet1Name)
 
-    err := xlsx.AutoFilter(sheet1Name, "A1", "B1", "")
+//     err := xlsx.AutoFilter(sheet1Name, "A1", "B1", "")
 
-    for i, each := range result {
+//     for i, each := range result {
 
-        xlsx.SetCellValue(sheet1Name, fmt.Sprintf("A%d", i+1), each.number_of_employees)
+//         xlsx.SetCellValue(sheet1Name, fmt.Sprintf("A%d", i+1), each.number_of_employees)
 
-        xlsx.SetCellValue(sheet1Name, fmt.Sprintf("B%d", i+1), each.name)
+//         xlsx.SetCellValue(sheet1Name, fmt.Sprintf("B%d", i+1), each.name)
 
-    }
+//     }
 
-    err = xlsx.SaveAs("./file2.xlsx")
+//     err = xlsx.SaveAs("./file2.xlsx")
 
-    if err != nil {
+//     if err != nil {
 
-        fmt.Println(err)
+//         fmt.Println(err)
 
-    }
+//     }
 
-}
+// }
 
 func createExcel(){
 
