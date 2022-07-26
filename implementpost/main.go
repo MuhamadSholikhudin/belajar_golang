@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"belajar/implementpost/views"
+	"./views"
 
 	"github.com/gorilla/mux"
 )

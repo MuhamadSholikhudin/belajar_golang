@@ -65,7 +65,7 @@ type department struct {
 }
 
 func connect() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/hrdit")
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/hrd")
 	if err != nil {
 		return nil, err
 	}
@@ -224,14 +224,16 @@ func sqlQuery() {
 		xlsx.SetCellValue(sheet1Name, fmt.Sprintf("AQ%d", each.id), each.status_employee)
 	}
 
-	err = xlsx.SaveAs("./file1.xlsx")
+	err = xlsx.SaveAs("./employees.xlsx")
 	if err != nil {
 		fmt.Println(err)
 	}
+
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
+func exportemployees(w http.ResponseWriter, r *http.Request) {
 	sqlQuery()
+	fmt.Fprintln(w, "Download Sukses")
 }
 
 func main() {
@@ -240,8 +242,8 @@ func main() {
 
 	})
 
-	http.HandleFunc("/index", index)
+	http.HandleFunc("/exportemployees", exportemployees)
 
-	fmt.Println("starting web server at http://localhost:9000/")
-	http.ListenAndServe(":9000", nil)
+	fmt.Println("starting web server at http://localhost:1/")
+	http.ListenAndServe(":1000", nil)
 }
